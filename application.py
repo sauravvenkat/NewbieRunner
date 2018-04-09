@@ -34,10 +34,6 @@ def nameData():
 	df2 = pd.DataFrame([[date,distance,time,place]], columns=['Date','Distance','Time','Place'])
 	df = df.append(df2, ignore_index=True)
 	df.to_csv("Running Log.csv", index=False)
-	# date = list(df['Date'])
-	# distance = list(df['Distance'])
-	# time = list(df['Time'])
-	# place = list(df['Place'])
 	return json.dumps({"date":date, "distance":distance, "time": time, "place": place})
 
 
