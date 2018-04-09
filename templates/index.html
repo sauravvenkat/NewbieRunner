@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Newbie Runner</title>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+</head>
+<body>
+	<form id='form' method='post'>
+		Enter Date <input id='dateInput' type='date' name='date' placeholder="Enter date" /><br/>
+		Enter Distance <input id='distance' type='number' name='distance' step='0.01' placeholder='Enter Distance'/><br/>
+		Enter Time<input id='time' name='time' type="text" placeholder="Enter Time mm:ss" /><br/>
+		Enter Place <input id='Place' name='place' type='text' placeholder="Treadmill or Outside" /><br/>
+
+		<button type='Submit'>Submit</button>
+		<table>
+			<tr>
+				<th>Date</th>
+    			<th>Distance</th> 
+    			<th>Place</th>
+    			<th>Time</th>
+			</tr>
+		{% for data in datas %}
+			<tr>
+				<th>{{ data[0] }}</th>
+				<th>{{ data[1] }}</th>
+				<th>{{ data[2] }}</th>
+				<th>{{ data[3] }}</th>
+			</tr>
+
+		{% endfor %}
+		</table>
+	</form>
+
+</body>
+<script>
+	$('form').on('submit', function(event){
+		$.ajax({
+			data: {
+				date: $('#dateInput').val(),
+				distance: $('#distance').val(),
+				time: $("#time").val(),
+				place: $('#Place').val()
+			},
+			type: 'POST',
+			dataType: 'JSON',
+			url: '/nameData',
+
+		}).done(function(data){
+			$('table').append("<tr>"+ "<th>"+data.date+"</th>"+ "<th>"+data.distance+"</th>"+"<th>"+data.place+"</th>"+"<th>"+data.time+"</th>"+"</tr>")
+		})
+		event.preventDefault()
+
+	})
+	
+</script>
+<style>
+	body{
+		font-family: arial, sans-serif;
+	}
+	#form{
+		display: block;
+		padding:10px;
+
+	}
+	input{
+		margin: 10px;
+		width: 10%;
+	}
+	select{
+		margin: 10px;
+		width: 10%;
+		text-align: center;
+	}
+	button{
+		margin: 10px;
+		width: 10%;
+	}
+	table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</html>
