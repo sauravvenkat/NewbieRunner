@@ -19,7 +19,6 @@ def index():
 		data.append(list(df['Place'])[i])
 		data.append(list(df['Time'])[i])
 		datas.append(data)
-	print(datas)
 
 	return render_template('index.html', datas=datas)
 
