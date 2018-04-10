@@ -48,6 +48,12 @@
 
 		}).done(function(data){
 			$('table').append("<tr>"+ "<th>"+data.date+"</th>"+ "<th>"+data.distance+"</th>"+"<th>"+data.place+"</th>"+"<th>"+data.time+"</th>"+"</tr>")
+			$('#dateInput').val('')
+			$('#distance').val('')
+			$("#time").val('')
+			$('#Place').val('')
+
+
 		})
 		event.preventDefault()
 
