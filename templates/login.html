@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+</head>
+<body>
+	<center class='center'>
+		<form action='' id='form' method='post'>
+			<h4>INVALID PASSWORD OR USERNAME</h4>
+			Username<input type='text' id='username' name='username' placeholder="Username"/><br/>
+			Password<input type='password' id='password' name='password' placeholder="Password"/><br/>
+			<button type='Submit'>Submit</button>
+		</form>
+	</center>	
+</body>
+<script>
+$('form').on('submit', function(event){
+		$.ajax({
+			type: 'POST',
+			dataType: 'JSON',
+			url: '/LoginData',
+			success: function(data){
+				if(data.valid == true){
+					console.log(data)
+					window.location(window.location.href + 'Data')
+				}
+				else{
+					$('h4').show()
+					console.log(data)
+				}
+			}
+
+		})
+	})
+</script>
+<style>
+	.center{
+		font-family: Arial;
+		display: block;
+	}
+	input{
+		margin: 10px;
+		width: 10%
+	}
+	button{
+		width: 16.5%
+	}
+	h4{
+		display: none;
+		color:red;
+	}
+
+</style>
+</html>
